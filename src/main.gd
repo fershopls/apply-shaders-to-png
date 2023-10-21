@@ -8,6 +8,7 @@ extends Node
 	"ffmpeg_output": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\releases\\frames\\output.mp4",
 	"shader_path": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\releases\\shader.gdshader",
 	"export_folder": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\releases\\frames",
+	"transparent": false,
 	"uniforms": {
 		"image_a": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\releases\\image_a.jpg",
 		"image_b": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\releases\\image_b.jpg"
