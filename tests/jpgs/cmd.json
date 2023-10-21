@@ -1,0 +1,13 @@
+{
+	"size": [1024, 1024],
+	"fps": 100,
+	"duration": 0.35,
+	"transparent": false,
+	"ffmpeg_output": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\jpgs\\output.mp4",
+	"shader_path": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\jpgs\\shader.gdshader",
+	"export_folder": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\jpgs\\frames",
+	"uniforms": {
+		"image_a": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\jpgs\\image_a.jpg",
+		"image_b": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\jpgs\\image_b.jpg"
+	}
+}

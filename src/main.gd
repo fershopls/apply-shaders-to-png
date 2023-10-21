@@ -20,7 +20,7 @@ func _ready():
 	var args = OS.get_cmdline_args()
 	
 	var cmd_path = args[0]
-	cmd_path = 'C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\releases\\cmd.json'
+	cmd_path = 'C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\pngs\\cmd.json'
 	
 	var cmd_content = FileAccess.get_file_as_string(cmd_path)
 	var cmd_json = JSON.parse_string(cmd_content)
@@ -37,6 +37,7 @@ func _ready():
 	var win_size = cmd_json["size"]
 	var uniforms = cmd_json["uniforms"]
 	var ffmpeg_output = cmd_json["ffmpeg_output"]
+	var transparent = cmd_json["transparent"]
 	
 	# Set size
 	get_window().size = Vector2i(win_size[0], win_size[1])
@@ -74,25 +75,37 @@ func _ready():
 		
 		var image = get_viewport().get_texture().get_image()
 		images.append(image)
-		#image.save_png(export_path+"/"+name+".png")
 		
 		print(i+1, '/', duration_fps, ' ', name, ' ', value)
 		
 		value += value_step
 	
-	print('exporting ', len(images), ' images')
+	var image_format = 'png' if transparent else 'jpg'
+	print('exporting ', len(images), ' images as ', image_format)
 	await get_tree().process_frame
 	
 	var i = 0
 	for image in images:
 		var filename = 'frame_'+str(i)
-		image.save_png(export_path+"/"+filename+".png")
+		var filepath = export_path+"/"+filename
+		
+		if transparent:
+			image.save_png(filepath + ".png")
+		else:
+			image.save_jpg(filepath + ".jpg")
+		
 		i += 1
 	
 	#ffmpeg -y -framerate 30 -i frame_%d.png -c:v libx264 -pix_fmt yuv420p output.mp4
 	if ffmpeg_output:
 		var os_output = []
-		OS.execute("ffmpeg", ["-y", "-framerate", str(fps), "-i", export_path+"/frame_%d.png", "-c:v", "libx264", "-pix_fmt", "yuv420p", ffmpeg_output], os_output)
+		var file_pattern = "/frame_%d.png" if transparent else "/frame_%d.jpg"
+		
+		if transparent:
+			OS.execute("ffmpeg", ["-y", "-framerate", str(fps), "-i", export_path+file_pattern, "-c:v", 'ffv1', '-pix_fmt', 'yuva420p', ffmpeg_output], os_output)
+		else:
+			OS.execute("ffmpeg", ["-y", "-framerate", str(fps), "-i", export_path+file_pattern, "-c:v", "libx264", "-pix_fmt", "yuv420p", ffmpeg_output], os_output)
+		
 		print(ffmpeg_output)
 	
 	get_tree().quit()

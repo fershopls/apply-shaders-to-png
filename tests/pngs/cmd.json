@@ -1,0 +1,12 @@
+{
+	"size": [512, 910],
+	"fps": 100,
+	"duration": 0.2,
+	"transparent": true,
+	"ffmpeg_output": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\pngs\\output.mkv",
+	"shader_path": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\pngs\\shader.gdshader",
+	"export_folder": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\pngs\\frames",
+	"uniforms": {
+		"image": "C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\pngs\\image.png",
+	}
+}
