@@ -21,7 +21,7 @@ func _ready():
 	var args = OS.get_cmdline_args()
 	
 	var cmd_path = args[0]
-	cmd_path = 'C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\pngs\\cmd.json'
+	# cmd_path = 'C:\\Users\\Personal\\Documents\\Godot\\20231020_png_shaders\\tests\\pngs\\cmd.json'
 	
 	var cmd_content = FileAccess.get_file_as_string(cmd_path)
 	var cmd_json = JSON.parse_string(cmd_content)
